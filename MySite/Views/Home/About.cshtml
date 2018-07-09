@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
+@model MySiteCore.Models.MyDbModel
 <h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+<h3>My Links:</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>@Model.webUrl</p>

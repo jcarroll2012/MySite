@@ -5,21 +5,29 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MySite.Models;
+using MySiteCore.Interfaces;
+using MySiteCore.Models;
 
 namespace MySite.Controllers
 {
     public class HomeController : Controller
     {
+        IMyRepository _repo;
+        public HomeController(IMyRepository repo)
+        {
+            _repo = repo;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
+        [Route("About/")]
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            MyDbModel model = _repo.getWebUrl(1).Result;
+            return View(model);
         }
 
         public IActionResult Contact()
